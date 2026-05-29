@@ -2,25 +2,6 @@ import "./style.css";
 import { createElement } from "./helpers/domHelper";
 import { fighters } from "./data/fighters";
 
-const rootElement = document.querySelector("#app");
-
-const titleElement = createElement({
-  tagName: "h1",
-});
-titleElement.innerText = "Street Fighter";
-
-const listElement = createElement({
-  tagName: "div",
-  className: "fighters-list",
-});
-
-fighters.forEach((fighter) => {
-  const fighterElement = createFighterCard(fighter);
-  listElement.append(fighterElement);
-});
-
-rootElement.append(titleElement, listElement);
-
 function createFighterCard(fighter) {
   const fighterElement = createElement({
     tagName: "div",
@@ -47,3 +28,22 @@ function createFighterCard(fighter) {
 
   return fighterElement;
 }
+
+const rootElement = document.querySelector("#app");
+
+const titleElement = createElement({
+  tagName: "h1",
+});
+titleElement.innerText = "Street Fighter";
+
+const listElement = createElement({
+  tagName: "div",
+  className: "fighters-list",
+});
+
+fighters.forEach((fighter) => {
+  const fighterElement = createFighterCard(fighter);
+  listElement.append(fighterElement);
+});
+
+rootElement.append(titleElement, listElement);
