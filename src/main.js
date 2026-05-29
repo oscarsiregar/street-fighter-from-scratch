@@ -45,8 +45,32 @@ const previewElement = createElement({
   className: "fighter-preview",
 });
 
+let selectedFighters = [];
+
 function showFighterPreview(fighter) {
-  previewElement.innerText = "";
+  const [firstFighter, secondFighter] = selectedFighters;
+
+  if (!firstFighter) {
+    selectedFighters = [fighter, secondFighter];
+  } else if (!secondFighter) {
+    selectedFighters = [firstFighter, fighter];
+  } else {
+    selectedFighters = [fighter, null];
+  }
+
+  console.log("Selected fighters state: ".selectedFighters);
+  renderSelectedFighters();
+}
+
+function createFighterPreview(fighter) {
+  const previewItem = createElement({
+    tagName: "div",
+    className: "fighter-preview__item",
+  });
+
+  if (!fighter) {
+    return previewItem;
+  }
 
   const imageElement = createElement({
     tagName: "img",
@@ -77,7 +101,25 @@ function showFighterPreview(fighter) {
 
   infoElement.append(nameElement, statsElement);
 
-  previewElement.append(imageElement, infoElement);
+  previewItem.append(imageElement, infoElement);
+
+  return previewItem;
+}
+
+function renderSelectedFighters() {
+  previewElement.innerText = "";
+
+  const [firstFighter, secondFighter] = selectedFighters;
+  const firstPreview = createFighterPreview(firstFighter);
+  const secondPreview = createFighterPreview(secondFighter);
+
+  const versusElement = createElement({
+    tagName: "div",
+    className: "fighter-preview__versus",
+  });
+
+  versusElement.innerText = "VS";
+  previewElement.append(firstPreview, versusElement, secondPreview);
 }
 
 const listElement = createElement({

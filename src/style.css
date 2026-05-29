@@ -37,13 +37,25 @@ body {
 }
 
 .fighter-preview {
-  min-height: 220px;
+  min-height: 240px;
   padding: 24px;
   display: flex;
   align-items: center;
-  gap: 24px;
-  font-size: 24px;
-  font-weight: 700;
+  justify-content: center;
+  gap: 32px;
+}
+
+.fighter-preview__item {
+  width: 280px;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.fighter-preview__versus {
+  font-size: 32px;
+  font-weight: 900;
 }
 
 .fighter-preview__image {
