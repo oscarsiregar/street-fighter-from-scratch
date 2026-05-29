@@ -46,7 +46,24 @@ const previewElement = createElement({
 });
 
 function showFighterPreview(fighter) {
-  previewElement.innerText = fighter.name;
+  previewElement.innerText = "";
+
+  const imageElement = createElement({
+    tagName: "img",
+    className: "fighter-preview__image",
+    attributes: {
+      src: fighter.source,
+      alt: fighter.name,
+      title: fighter.name,
+    },
+  });
+
+  const nameElement = createElement({
+    tagName: "div",
+    className: "fighter-preview__name",
+  });
+  nameElement.innerText = fighter.name;
+  previewElement.append(imageElement, nameElement);
 }
 
 const listElement = createElement({
