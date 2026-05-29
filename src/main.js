@@ -2,7 +2,7 @@ import "./style.css";
 import { createElement } from "./helpers/domHelper";
 import { fighters } from "./data/fighters";
 
-function createFighterCard(fighter) {
+function createFighterCard(fighter, onSelect) {
   const fighterElement = createElement({
     tagName: "div",
     className: "fighter-card",
@@ -26,6 +26,10 @@ function createFighterCard(fighter) {
   nameElement.innerText = fighter.name;
   fighterElement.append(imageElement, nameElement);
 
+  fighterElement.addEventListener("click", () => {
+    onSelect(fighter);
+  });
+
   return fighterElement;
 }
 
@@ -36,14 +40,23 @@ const titleElement = createElement({
 });
 titleElement.innerText = "Street Fighter";
 
+const previewElement = createElement({
+  tagName: "div",
+  className: "fighter-preview",
+});
+
+function showFighterPreview(fighter) {
+  previewElement.innerText = fighter.name;
+}
+
 const listElement = createElement({
   tagName: "div",
   className: "fighters-list",
 });
 
 fighters.forEach((fighter) => {
-  const fighterElement = createFighterCard(fighter);
+  const fighterElement = createFighterCard(fighter, showFighterPreview);
   listElement.append(fighterElement);
 });
 
-rootElement.append(titleElement, listElement);
+rootElement.append(titleElement, previewElement, listElement);

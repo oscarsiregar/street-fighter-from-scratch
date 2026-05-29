@@ -35,3 +35,10 @@ body {
 .fighter-card__name {
   font-weight: 700;
 }
+
+.fighter-preview {
+  min-height: 80px;
+  padding: 24px;
+  font-size: 24px;
+  font-weight: 700;
+}
