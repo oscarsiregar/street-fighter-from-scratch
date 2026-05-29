@@ -58,12 +58,26 @@ function showFighterPreview(fighter) {
     },
   });
 
+  const infoElement = createElement({
+    tagName: "div",
+    className: "fighter-preview__info",
+  });
+
   const nameElement = createElement({
     tagName: "div",
     className: "fighter-preview__name",
   });
   nameElement.innerText = fighter.name;
-  previewElement.append(imageElement, nameElement);
+
+  const statsElement = createElement({
+    tagName: "div",
+    className: "fighter-preview__stats",
+  });
+  statsElement.innerText = `Health: ${fighter.health} | Attack: ${fighter.attack} | Defense: ${fighter.defense}`;
+
+  infoElement.append(nameElement, statsElement);
+
+  previewElement.append(imageElement, infoElement);
 }
 
 const listElement = createElement({
